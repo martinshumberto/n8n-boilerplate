@@ -52,7 +52,7 @@ services:
       - N8N_PROTOCOL=https
       - NODE_ENV=production
       - N8N_PATH
-      - WEBHOOK_URL=https://${SUB_DOMAIN}.${DOMAIN_NAME}
+      - WEBHOOK_URL=https://${SUB_DOMAIN}.${DOMAIN_NAME}/
       - GENERIC_TIMEZONE=America/Sao_Paulo
       - TZ=America/Sao_Paulo
     volumes:
