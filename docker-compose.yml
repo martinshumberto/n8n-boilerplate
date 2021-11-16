@@ -61,6 +61,7 @@ services:
       - EXECUTIONS_DATA_PRUNE=true
       - EXECUTIONS_DATA_MAX_AGE=168
       - DB_SQLITE_VACUUM_ON_STARTUP=true
+      - NODE_OPTIONS=--max-old-space-size=5120
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${DATA_FOLDER}/.n8n:/home/node/.n8n
