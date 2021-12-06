@@ -79,6 +79,8 @@ services:
     image: postgres:11
     container_name: wynd_postgres
     restart: always
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
