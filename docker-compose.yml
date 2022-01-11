@@ -26,6 +26,11 @@ services:
     volumes:
       - ${DATA_FOLDER}/letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
 
   n8n:
     image: n8nio/n8n
@@ -74,6 +79,11 @@ services:
     # Wait 5 seconds to start n8n to make sure that PostgreSQL is ready
     # when n8n tries to connect to it
     command: /bin/sh -c "sleep 5; n8n start"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
 
   postgres:
     image: postgres:11
@@ -89,3 +99,8 @@ services:
       - POSTGRES_NON_ROOT_PASSWORD
     volumes:
       - ./init-data.sh:/docker-entrypoint-initdb.d/init-data.sh
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
