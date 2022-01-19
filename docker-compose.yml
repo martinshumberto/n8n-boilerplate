@@ -18,8 +18,7 @@ services:
       - "--entrypoints.websecure.address=:443"
       - "--certificatesresolvers.mytlschallenge.acme.tlschallenge=true"
       - "--certificatesresolvers.mytlschallenge.acme.email=${SSL_EMAIL}"
-      - "--certificatesresolvers.mytlschallenge.acme.storage=/letsencrypt/acme.\
-        json"
+      - "--certificatesresolvers.mytlschallenge.acme.storage=/letsencrypt/acme.json"
     ports:
       - "443:443"
       - "80:80"
@@ -64,8 +63,13 @@ services:
       - WEBHOOK_URL=https://${SUB_DOMAIN}.${DOMAIN_NAME}/
       - GENERIC_TIMEZONE=America/Sao_Paulo
       - TZ=America/Sao_Paulo
+      - EXECUTIONS_DATA_SAVE_ON_ERROR=all
+      - EXECUTIONS_DATA_SAVE_ON_SUCCESS=none
+      - EXECUTIONS_DATA_SAVE_ON_PROGRESS=true
+      - EXECUTIONS_DATA_SAVE_MANUAL_EXECUTIONS=false
       - EXECUTIONS_DATA_PRUNE=true
-      - EXECUTIONS_DATA_MAX_AGE=168
+      - EXECUTIONS_DATA_MAX_AGE=30
+      - DB_SQLITE_VACUUM_ON_STARTUP=true
       - NODE_OPTIONS=--max-old-space-size=5120
       - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=postgres
